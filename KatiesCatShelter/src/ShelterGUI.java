@@ -13,8 +13,15 @@
 * Java, Java, Java: Object-Oriented Problem Solving
 * https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
 *
-* <<Add more references here>>
+* GeeksforGeeks. “Introduction to Java Swing.” GeeksforGeeks, 15 Feb. 2022, 
+* www.geeksforgeeks.org/java/introduction-to-java-swing/.
+* 
+* Oracle. “Javax.swing (Java Platform SE 8 ).” Docs.oracle.com, 
+* docs.oracle.com/javase/8/docs/api/javax/swing/package-summary.html.
 *
+* www.leepoint.net /fred, Fred Swartz. “Java: Images - ImageIcon.” Puc-Rio.br, 2026, 
+* web.tecgraf.puc-rio.br/~ismael/Cursos/apostilas/Java-Notes/30GUI/20graphics/45imageicon.html. Accessed 9 Apr. 2026.
+* 
 * Version: 2026-04-06
 */
 
