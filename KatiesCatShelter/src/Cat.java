@@ -41,11 +41,12 @@ public abstract class Cat
 	//Cat has-a picture
 	private ImageIcon picture;
 	
+	public Cat() {}
 	/**
 	 * Purpose: Constructor for a cat object
 	 */
 	//TODO - Fix constructor
-	public Cat() {
+	public Cat(String name, int age, SocialLevel socialLevel, String pictureFilePath) {
 		isAdopted = false;
 	}
 	

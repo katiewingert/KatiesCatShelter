@@ -26,6 +26,10 @@
  */
 public class BigCat extends Cat
 {
+	public BigCat() {}
+	public BigCat(String name, int age, SocialLevel level, String filePath) {
+		super(name, age, level, filePath);
+	}
 	/**
 	 * Purpose: Increase happiness of cat because of being fed
 	 */

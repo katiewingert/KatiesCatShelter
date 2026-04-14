@@ -26,6 +26,9 @@
  */
 public class SmallCat extends Cat
 {
+	public SmallCat(String name, int age, SocialLevel level, String filePath) {
+		super(name, age, level, filePath);
+	}
 	/**
 	 * Purpose: increase cat happiness based on feed effect
 	 */
