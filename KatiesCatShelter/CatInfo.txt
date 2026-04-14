@@ -1,0 +1,5 @@
+Name: Charisma
+Age: 2
+SocialLevel: Introverted
+Filepath: Elle.jpg
+Size: Big

@@ -1,3 +1,5 @@
+import java.util.*;
+import java.io.*;
 /**
 * Lead Author(s):
 * @author katie; student ID
@@ -24,18 +26,96 @@
  * CatFileReader is-a ...
  * CatFileReader is ...
  */
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CatFileReader
 {
 	private String filePath;
-	private ArrayList<Cat> catList;
 	
-	public CatFileReader(String filePath) {
+	public CatFileReader() {
 		//TODO
 	}
 	
-	public ArrayList<Cat> getCatList() {
-		return catList;
+	//there is an expected file format which is to be included in this project
+	//invalid file format is when file format is not correct
+//Cat(String name, int age, SocialLevel socialLevel, String filePath)
+	public void readCatFile(String filePath, AdoptionManager manager) throws InvalidFileFormatException {
+		Scanner scan = null;
+		String name;
+		int age;
+		SocialLevel socialLevel;
+		String pictureFilePath;
+		String catSize;
+		String level;
+		try {
+			File file = new File(filePath);
+			scan = new Scanner(file);
+			for (int i = 0; i < 1; i++) {
+				Cat cat;
+				if (!scan.next().equals("Name:"))
+				{
+					throw new InvalidFileFormatException();
+				}
+				
+				name = scan.next();
+				
+				if (!scan.next().equals("Age:")) {
+					throw new InvalidFileFormatException();
+				}
+				
+				age = scan.nextInt();
+				
+				if (!scan.next().equals("SocialLevel:")) {
+					throw new InvalidFileFormatException();
+				}
+				
+				level = scan.next();
+				
+				if (!scan.next().equals("Filepath:")) {
+					throw new InvalidFileFormatException();
+				}
+				
+				pictureFilePath = scan.next();
+				
+				if (!scan.next().equals("Size:")) {
+					throw new InvalidFileFormatException();
+				}
+				
+				catSize = scan.next();
+				
+				if (level.equals("Introverted")) {
+					socialLevel = new Introverted();
+				}
+				else if (level.equals("Extroverted")) {
+					socialLevel = new Extroverted();
+				}
+				else {
+					throw new InvalidFileFormatException();
+				}
+				
+				if (catSize.equals("Big")) {
+					cat = new BigCat(name, age, socialLevel, pictureFilePath);
+				}
+				else if (catSize.equals("Small")) {
+					cat = new SmallCat(name, age, socialLevel, pictureFilePath);
+				}
+				else {
+					throw new InvalidFileFormatException();
+				}
+				manager.addCat(cat);
+			}
+			
+		}
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			if (scan != null) {
+				scan.close();
+			}
+		}
 	}
+	
 }
