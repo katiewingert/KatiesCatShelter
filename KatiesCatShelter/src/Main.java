@@ -28,5 +28,16 @@ public class Main
 {
 	
 	public static void main(String[] args) {
+		AdoptionManager manager = new AdoptionManager();
+		CatFileReader reader = new CatFileReader();
+		try
+		{
+			reader.readCatFile("CatInfo.txt", manager);
+		}
+		catch (InvalidFileFormatException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
