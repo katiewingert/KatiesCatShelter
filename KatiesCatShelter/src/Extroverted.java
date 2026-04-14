@@ -24,7 +24,7 @@
  * Extroverted is-a ...
  * Extroverted is ...
  */
-public class Extroverted
+public class Extroverted implements SocialLevel
 {
 	/**
 	 * Purpose: increase cat happiness based on pet effect
