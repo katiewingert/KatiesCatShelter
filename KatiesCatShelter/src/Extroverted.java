@@ -33,4 +33,9 @@ public class Extroverted implements SocialLevel
 		//extroverted cats need more pets to be happy
 		return 5;
 	}
+	
+	@Override
+	public String toString() {
+		return "Extroverted";
+	}
 }
