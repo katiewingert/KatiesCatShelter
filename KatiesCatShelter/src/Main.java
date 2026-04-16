@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 /**
 * Lead Author(s):
 * @author katie; student ID
@@ -37,7 +38,9 @@ public class Main
 		catch (InvalidFileFormatException e)
 		{
 			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
+		new ShelterGUI(manager);
 	}
 }
