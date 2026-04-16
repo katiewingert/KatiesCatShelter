@@ -75,18 +75,26 @@ public class ShelterGUI extends JFrame
 		for (int i = 0; i < adoptableCats.size(); i++) {
 			Cat cat = adoptableCats.get(i);
 			JPanel panel = new JPanel(new BorderLayout());
-			JButton button = new JButton();
 			JLabel name = new JLabel(cat.getName());
 			ImageIcon pic = new ImageIcon();
+			pic = new ImageIcon(cat.getPicture().getImage().getScaledInstance(250,  250, Image.SCALE_SMOOTH));
+			JButton button = new JButton(pic);
 			
 			name.setHorizontalAlignment(SwingConstants.CENTER);
-			button.addActionListener(e -> showCatProfile(cat));
-			pic = new ImageIcon(cat.getPicture().getImage().getScaledInstance(250,  250, Image.SCALE_SMOOTH));
-			button.setIcon(pic);
+			button.addActionListener(e -> showCatProfile(cat, button));
 			button.setPreferredSize(new Dimension(275, 275));
 			panel.add(button, BorderLayout.NORTH);
 			panel.add(name, BorderLayout.SOUTH);
 			catButtonPanel.add(panel);
+			
+			//so if user adopts 2 cats from shelter but one runs away, when the shelter reloads itll still show the adopted cat
+			if (cat.isAdopted()) {
+				button.setEnabled(false);
+				button.setText("Adopted");
+				button.setHorizontalTextPosition(JButton.CENTER);
+				button.setVerticalTextPosition(JButton.CENTER);
+				button.setFont(new Font("Serif", Font.BOLD, 30));
+			}
 			
 			catButtons.add(button);
 		}
@@ -110,7 +118,7 @@ public class ShelterGUI extends JFrame
 	 * Purpose: Action listener used to show profile of a cat
 	 * @param cat to show profile of
 	 */
-	public void showCatProfile(Cat cat) {
+	public void showCatProfile(Cat cat, JButton catButton) {
 		//TODO - organize this code
 		//TODO - style aspects. Cat on left half of the screen, profile information on right half, big adopt button
 		JFrame catFrame = new JFrame();
@@ -121,16 +129,22 @@ public class ShelterGUI extends JFrame
 		catFrame.add(westPanel, BorderLayout.WEST);
 		
 		//east panel info 
-		JPanel eastPanel = new JPanel(new GridLayout(3, 1));
-		JLabel nameLabel = new JLabel("Name: " + cat.getName());
+		JPanel eastPanel = new JPanel(new GridLayout(6, 1));
+		JLabel nameLabel = new JLabel("Here is some information about " + cat.getName());
 		JLabel ageLabel = new JLabel("Age: " + cat.getAge());
+		JLabel sizeLabel = new JLabel("Size: " + cat.getSize());
+		JLabel socialLevelLabel = new JLabel("Social Level: " + cat.getSocialLevel());
+		JLabel adoptLabel = new JLabel("Ready to adopt " + cat.getName() + "?");
 		
 		JButton adoptButton = new JButton();
 		adoptButton.setText("Click to Adopt!");
-		adoptButton.addActionListener(e -> adoptCat(cat, catFrame));
+		adoptButton.addActionListener(e -> adoptCat(cat, catFrame,catButton));
 		
 		eastPanel.add(nameLabel);
 		eastPanel.add(ageLabel);
+		eastPanel.add(sizeLabel);
+		eastPanel.add(socialLevelLabel);
+		eastPanel.add(adoptLabel);
 		eastPanel.add(adoptButton);
 		catFrame.add(eastPanel, BorderLayout.EAST);
 		
@@ -142,17 +156,16 @@ public class ShelterGUI extends JFrame
 	 * Purpose: Action listener which allows user to adopt a cat
 	 * @param cat to be adopted
 	 */
-	public void adoptCat(Cat cat, JFrame catFrame) {
-		if (!cat.isAdopted()) {
-			JOptionPane.showMessageDialog(this, "Congratulations! You have adopted " + cat.getName());
-			adoptionManager.adoptCat(cat);
-			//close the profile upon adoption
-			catFrame.dispose();
-		}
-		else {
-			JOptionPane.showMessageDialog(this, "You have already adopted " + cat.getName());
-			catFrame.dispose();
-		}
+	public void adoptCat(Cat cat, JFrame catFrame, JButton catButton) {
+		JOptionPane.showMessageDialog(this, "Congratulations! You have adopted " + cat.getName());
+		adoptionManager.adoptCat(cat);
+		catFrame.dispose();
+		catButton.setEnabled(false);
+		catButton.setText("Adopted");
+		catButton.setHorizontalTextPosition(JButton.CENTER);
+		catButton.setVerticalTextPosition(JButton.CENTER);
+		catButton.setFont(new Font("Serif", Font.BOLD, 30));
+		
 	}
 	
 	/**
@@ -160,55 +173,6 @@ public class ShelterGUI extends JFrame
 	 * @param
 	 * @Return
 	 */
-	public void updateGUI() {
-		//TODO?
-	}
-	
-
-	
-	public static void main(String[] args) {
-		//this is all temporary just for testing the GUI
-		Cat charisma = new BigCat();
-		charisma.setPicture("/Users/katie/eclipse-workspace/KatiesCatShelter/images/Elle.jpg");
-		charisma.setName("Charisma");
-		charisma.setAge(3);
-		Cat one = new BigCat();
-		one.setName("Dotty");
-		one.setAge(2);
-		one.setPicture("/Users/katie/eclipse-workspace/KatiesCatShelter/images/Elle.jpg");
-		Cat two = new BigCat();
-		two.setPicture("/Users/katie/eclipse-workspace/KatiesCatShelter/images/Elle.jpg");
-		Cat three = new BigCat();
-		three.setPicture("/Users/katie/eclipse-workspace/KatiesCatShelter/images/Elle.jpg");
-		Cat four = new BigCat();
-		four.setPicture("/Users/katie/eclipse-workspace/KatiesCatShelter/images/Elle.jpg");
-		Cat five = new BigCat();
-		five.setPicture("/Users/katie/eclipse-workspace/KatiesCatShelter/images/Elle.jpg");
-		Cat six = new BigCat();
-		six.setPicture("/Users/katie/eclipse-workspace/KatiesCatShelter/images/Elle.jpg");
-		Cat seven = new BigCat();
-		seven.setPicture("/Users/katie/eclipse-workspace/KatiesCatShelter/images/Elle.jpg");
-		Cat eight = new BigCat();
-		eight.setPicture("/Users/katie/eclipse-workspace/KatiesCatShelter/images/Elle.jpg");
-		Cat nine = new BigCat();
-		nine.setPicture("/Users/katie/eclipse-workspace/KatiesCatShelter/images/Elle.jpg");
-		Cat ten = new BigCat();
-		ten.setPicture("/Users/katie/eclipse-workspace/KatiesCatShelter/images/Elle.jpg");
-		Cat eleven = new BigCat();
-		eleven.setPicture("/Users/katie/eclipse-workspace/KatiesCatShelter/images/Elle.jpg");
-		AdoptionManager adoptionManager = new AdoptionManager();
-		adoptionManager.addCat(charisma);
-		adoptionManager.addCat(one);
-		adoptionManager.addCat(two);
-		adoptionManager.addCat(three);
-		adoptionManager.addCat(four);
-		adoptionManager.addCat(five);
-		adoptionManager.addCat(six);
-		adoptionManager.addCat(seven);
-		adoptionManager.addCat(eight);
-		adoptionManager.addCat(nine);
-		adoptionManager.addCat(ten);
-		adoptionManager.addCat(eleven);
-		new ShelterGUI(adoptionManager);
+	public void updateGUI(JButton catButton) {
 	}
 }
