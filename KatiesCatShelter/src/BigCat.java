@@ -38,4 +38,9 @@ public class BigCat extends Cat
 		//the same portion of food increases happiness less for a big cat
 		this.increaseHappiness(5);
 	}
+	
+	@Override
+	public String getSize() {
+		return "Big";
+	}
 }

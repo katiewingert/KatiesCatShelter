@@ -37,4 +37,9 @@ public class SmallCat extends Cat
 		//the same portion of food increases happiness more for a small cat
 		this.increaseHappiness(10);
 	}
+	
+	@Override
+	public String getSize() {
+		return "Small";
+	}
 }
