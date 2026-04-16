@@ -34,13 +34,11 @@ public class CatFileReader
 {
 	private String filePath;
 	
-	public CatFileReader() {
-		//TODO
-	}
+	public CatFileReader() {}
 	
 	//there is an expected file format which is to be included in this project
 	//invalid file format is when file format is not correct
-//Cat(String name, int age, SocialLevel socialLevel, String filePath)
+
 	public void readCatFile(String filePath, AdoptionManager manager) throws InvalidFileFormatException {
 		Scanner scan = null;
 		String name;
@@ -52,7 +50,7 @@ public class CatFileReader
 		try {
 			File file = new File(filePath);
 			scan = new Scanner(file);
-			for (int i = 0; i < 1; i++) {
+			for (int i = 0; i < 12; i++) {
 				Cat cat;
 				if (!scan.next().equals("Name:"))
 				{
@@ -104,6 +102,8 @@ public class CatFileReader
 				else {
 					throw new InvalidFileFormatException();
 				}
+				cat = new BigCat(name, age, socialLevel, pictureFilePath);
+				
 				manager.addCat(cat);
 			}
 			
