@@ -39,6 +39,7 @@ public class HomeGUI extends JFrame
 {
 	//HomeGUI has-a adoptionManager
 	private AdoptionManager adoptionManager;
+	private ArrayList<JSlider> sliderList = new ArrayList<>();
 	
 	/**
 	 * Purpose: GUI for home
@@ -48,14 +49,12 @@ public class HomeGUI extends JFrame
 		//adoption manager
 		adoptionManager = newAdoptionManager;
 		//get ArrayList of owners adopted cats
-		ArrayList<Cat> myCats = new ArrayList<>();
-		myCats = adoptionManager.getAdoptedCats();
-		
+		ArrayList<Cat> myCats = adoptionManager.getAdoptedCats();
 		this.setLayout(new BorderLayout());
-		
+		System.out.print(myCats.size());
 		//create panel for cats
-		JPanel catPanel = new JPanel();
-		JPanel sliderPanel = new JPanel();
+		JPanel catPanel = new JPanel(new GridLayout(4, myCats.size()));
+		//JPanel sliderPanel = new JPanel();
 		//Get images of adopted cats on screen.
 		for (int i = 0; i < myCats.size(); i++) {
 			//Creating cat pictures
@@ -63,21 +62,52 @@ public class HomeGUI extends JFrame
 			JLabel label = new JLabel();
 			label.setIcon(myCats.get(i).getPicture());
 			catPanel.add(label);
-			
+		}
+		for (int i = 0; i < myCats.size(); i++) {
 			//Happiness sliders
 			//TODO - related to the game aspect, much work to be done
 			JSlider slider = new JSlider(JSlider.HORIZONTAL);
-			slider.disable();
-			sliderPanel.add(slider);
+			slider.setMaximum(100);
+			slider.setMinimum(0);
+			slider.setValue(100);
+			slider.setEnabled(false);
+			//sliderPanel.add(slider);
+			sliderList.add(slider);
+			catPanel.add(slider);
 		}
 		
+		GameManager manager = new GameManager(sliderList, adoptionManager, this);
+		
+		for (int i = 0; i < myCats.size(); i++) {
+			Cat cat = myCats.get(i);
+			JButton button = new JButton();
+			button.setText("Feed");
+			button.addActionListener(e-> manager.wasFed(cat));
+			catPanel.add(button);
+		}
+		for (int i = 0; i < myCats.size(); i++) {
+			Cat cat = myCats.get(i);
+			JButton button = new JButton();
+			button.setText("Pet");
+			button.addActionListener(e->manager.wasPet(cat));
+			catPanel.add(button);
+		}
+		
+		JButton shelterButton = new JButton();
+		shelterButton.addActionListener(e->switchToShelter());
+		this.add(shelterButton, BorderLayout.NORTH);
+		
 		//add components to the GUI
-		this.add(sliderPanel, BorderLayout.SOUTH);
+		//this.add(sliderPanel, BorderLayout.SOUTH);
 		this.add(catPanel, BorderLayout.CENTER);
 		//make visible
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		setVisible(true);
+	}
+	public void switchToShelter() {
+		new ShelterGUI(adoptionManager);
+		this.dispose();
 	}
 	//TODO - game component - new class?
 	//TODO - set background to something interesting
