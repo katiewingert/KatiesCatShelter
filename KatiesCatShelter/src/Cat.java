@@ -41,12 +41,19 @@ public abstract class Cat
 	//Cat has-a picture
 	private ImageIcon picture;
 	
-	public Cat() {}
+	public Cat() {
+		isAdopted = false;
+	}
 	/**
 	 * Purpose: Constructor for a cat object
 	 */
 	//TODO - Fix constructor
 	public Cat(String name, int age, SocialLevel socialLevel, String pictureFilePath) {
+		this.name = name;
+		this.age = age;
+		this.socialLevel = socialLevel;
+		picture = new ImageIcon(pictureFilePath);
+		happiness = 100;
 		isAdopted = false;
 	}
 	
@@ -142,6 +149,17 @@ public abstract class Cat
 		}
 	}
 	
+	public void decreaseHappiness(int happiness) {
+		this.happiness -= happiness;
+		if (this.happiness < 0) {
+			this.happiness = 0;
+		}
+	}
+	
+	public String getSocialLevel() {
+		return socialLevel.toString();
+	}
+	
 	/**
 	 * Purpose: Function that increases cat happiness due to being pet
 	 */
@@ -150,4 +168,6 @@ public abstract class Cat
 	}
 	
 	abstract void feed();
+	
+	abstract String getSize();
 }
