@@ -42,7 +42,12 @@ public abstract class Cat
 	private ImageIcon picture;
 	
 	public Cat() {
+		name = "NoName";
+		age = -1;
+		socialLevel = null;
+		picture = null;
 		isAdopted = false;
+		happiness = 100;
 	}
 	/**
 	 * Purpose: Constructor for a cat object
@@ -166,6 +171,7 @@ public abstract class Cat
 	public void pet() {
 		increaseHappiness(socialLevel.petEffect());
 	}
+	
 	
 	abstract void feed();
 	

@@ -43,4 +43,9 @@ public class BigCat extends Cat
 	public String getSize() {
 		return "Big";
 	}
+	
+	@Override
+	public String toString() {
+		return getName() + getAge() + getSocialLevel() + getSize();
+	}
 }

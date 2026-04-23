@@ -42,4 +42,9 @@ public class SmallCat extends Cat
 	public String getSize() {
 		return "Small";
 	}
+	
+	@Override
+	public String toString() {
+		return getName() + getAge() + getSocialLevel() + getSize();
+	}
 }
