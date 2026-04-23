@@ -1,6 +1,8 @@
 import java.util.Date;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Timer;
+import javax.swing.Timer;
 /**
 * Lead Author(s):
 * @author katie; student ID
@@ -18,10 +20,13 @@ import java.util.Timer;
 *
 * <<Add more references here>>
 *https://codegym.cc/groups/posts/java-timer-class
+*https://docs.oracle.com/javase/8/docs/api/javax/swing/Timer.html
 * Version: 2026-04-08
+* 
 */
 import java.util.TimerTask;
-
+import javax.swing.*;
+import java.awt.*;
 import javax.swing.JSlider;
 
 /**
@@ -31,39 +36,82 @@ import javax.swing.JSlider;
  * GameManager is ...
  */
 public class GameManager
-{
-	//So, each slider needs a timer. Every 5ish seconds the timer 'goes off' and reduces happiness UNLESS an action is performed that
-	//increases happiness. How to approach this? Who knows
-	Timer timer;
-	ArrayList<JSlider> sliders;
-	AdoptionManager manager;
-	HomeGUI home;
-	public GameManager(ArrayList<JSlider> sliderList, AdoptionManager adoptionManager, HomeGUI homeGUI) {
+{ 
+	private ArrayList<CatSlider> sliders;
+	private AdoptionManager manager;
+	private HomeGUI home; //necisary?
+	private ArrayList<Cat> cats; 
+	private Timer timer;
+	private long lastFeedTime;
+	private long lastPlayTime;
+	public GameManager(ArrayList<CatSlider> sliderList, AdoptionManager adoptionManager, HomeGUI homeGUI) {
 		sliders = sliderList;
 		manager = adoptionManager;
 		home = homeGUI;
-		timer = new Timer();
-		ArrayList<Cat> cats = adoptionManager.getAdoptedCats();
-		TimerTask task = new TimerTask() {
-			public void run() {
-				for (int i = 0; i < cats.size(); i++) {
-					sliderList.get(i).setValue(cats.get(i).getHappiness() - 1);
-					cats.get(i).decreaseHappiness(1);
-				}
-			}
-		};
-		Date startTime = new Date();
-		timer.schedule(task, startTime, 1000);
+		cats = adoptionManager.getAdoptedCats();
 	}
 	
+	public void startGame() {
+		
+		ActionListener taskPerformed = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				for (int i = 0; i < cats.size(); i++) {
+					cats.get(i).decreaseHappiness(1);
+					sliders.get(i).setValue(cats.get(i).getHappiness());
+					if (cats.get(i).getHappiness() == 0) {
+						runAway(cats.get(i));
+					}
+				}
+				
+			}
+		};
+			
+		timer = new Timer(100, taskPerformed);
+		timer.start();
+	}
+	public void pauseGame() {
+		timer.stop();
+	}
 	public void wasPet(Cat cat) {
-		cat.pet();
+		if (cat.getSocialLevel().equals("Extroverted")) {
+			cat.pet();
+		}
+		else {
+			long currTime = System.currentTimeMillis();
+			if (currTime - lastPlayTime <= 1000) {
+				//small cats are a little unhappy if they are overfed
+				cat.decreaseHappiness(1);
+			}
+			else {
+				cat.pet();
+				lastPlayTime = currTime;
+			}
+		}
 	}
 	
 	public void wasFed(Cat cat) {
-		cat.feed();
+		if (cat.getSize().equals("Big")) {
+			cat.feed();
+		}
+		else {
+			long currTime = System.currentTimeMillis();
+			if (currTime - lastFeedTime <= 1000) {
+				//small cats are a little unhappy if they are overfed
+				cat.decreaseHappiness(1);
+			}
+			else {
+				cat.feed();
+				lastFeedTime = currTime;
+			}
+		}
 	}
 
-
-	
+	public void runAway(Cat cat) {
+		manager.unadoptCat(cat);
+		home.updateGUI(cat);
+	}
+	//TODO - I want to have some sort of indicator that the cat is happy or unhappy. Like top 33% happy middle uneasy bottom sad
 }
