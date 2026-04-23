@@ -35,83 +35,109 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+
 public class HomeGUI extends JFrame
 {
 	//HomeGUI has-a adoptionManager
 	private AdoptionManager adoptionManager;
-	private ArrayList<JSlider> sliderList = new ArrayList<>();
+	//HomeGUI has-many sliders
+	private ArrayList<CatSlider> sliderList = new ArrayList<>();
+	//HomeGUI has-a GameManager
+	private GameManager manager;
 	
 	/**
 	 * Purpose: GUI for home
 	 * @param adoption manager 
 	 */
 	public HomeGUI(AdoptionManager newAdoptionManager) {
-		//adoption manager
 		adoptionManager = newAdoptionManager;
-		//get ArrayList of owners adopted cats
 		ArrayList<Cat> myCats = adoptionManager.getAdoptedCats();
+		manager = new GameManager(sliderList, adoptionManager, this);
+		
 		this.setLayout(new BorderLayout());
-		System.out.print(myCats.size());
-		//create panel for cats
-		JPanel catPanel = new JPanel(new GridLayout(4, myCats.size()));
-		//JPanel sliderPanel = new JPanel();
+		//this.setPreferredSize(new Dimension(1000, 1000));
+		
+		JPanel catPanel = new JPanel(new GridLayout(3, myCats.size()));
+		
+		if (myCats.size() == 0) {
+			JLabel label = new JLabel("You have no cats.");
+			JLabel label2 = new JLabel("Stop by Katies Cat Shelter to adopt!");
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+			label.setVerticalAlignment(SwingConstants.CENTER);
+			label.setFont(new Font("Serif", Font.BOLD, 50));
+			label2.setHorizontalAlignment(SwingConstants.CENTER);
+			label2.setVerticalAlignment(SwingConstants.CENTER);
+			label2.setFont(new Font("Serif", Font.BOLD, 50));
+			catPanel.add(label);
+			catPanel.add(label2);
+		}
+		
 		//Get images of adopted cats on screen.
 		for (int i = 0; i < myCats.size(); i++) {
-			//Creating cat pictures
 			//TODO - set size and add some sort of padding
 			JLabel label = new JLabel();
 			label.setIcon(myCats.get(i).getPicture());
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+			label.setVerticalAlignment(SwingConstants.CENTER);
 			catPanel.add(label);
 		}
+		
+		//sliders
 		for (int i = 0; i < myCats.size(); i++) {
-			//Happiness sliders
-			//TODO - related to the game aspect, much work to be done
-			JSlider slider = new JSlider(JSlider.HORIZONTAL);
+			Cat cat = myCats.get(i);
+			CatSlider slider = new CatSlider(JSlider.HORIZONTAL, cat);
 			slider.setMaximum(100);
 			slider.setMinimum(0);
 			slider.setValue(100);
 			slider.setEnabled(false);
-			//sliderPanel.add(slider);
 			sliderList.add(slider);
 			catPanel.add(slider);
 		}
 		
-		GameManager manager = new GameManager(sliderList, adoptionManager, this);
-		
+		// buttons		
 		for (int i = 0; i < myCats.size(); i++) {
 			Cat cat = myCats.get(i);
-			JButton button = new JButton();
-			button.setText("Feed");
-			button.addActionListener(e-> manager.wasFed(cat));
-			catPanel.add(button);
+			JPanel buttonPanel = new JPanel();
+			JButton button1 = new JButton();
+			button1.setText("Feed");
+			button1.addActionListener(e-> manager.wasFed(cat));
+			JButton button2 = new JButton();
+			button2.setText("Pet");
+			button2.addActionListener(e->manager.wasPet(cat));
+			buttonPanel.add(button1);
+			buttonPanel.add(button2);
+			catPanel.add(buttonPanel);
 		}
-		for (int i = 0; i < myCats.size(); i++) {
-			Cat cat = myCats.get(i);
-			JButton button = new JButton();
-			button.setText("Pet");
-			button.addActionListener(e->manager.wasPet(cat));
-			catPanel.add(button);
-		}
+		JPanel topPanel = new JPanel(new BorderLayout());
 		
-		JButton shelterButton = new JButton();
-		shelterButton.addActionListener(e->switchToShelter());
-		this.add(shelterButton, BorderLayout.NORTH);
+		JButton shelterButton = new JButton("\uD83D\uDC08");
+		shelterButton.addActionListener(e -> switchToShelter());
+		shelterButton.setSize(200, 200);
+		topPanel.add(shelterButton, BorderLayout.EAST);
+		this.add(topPanel, BorderLayout.NORTH);	
 		
 		//add components to the GUI
-		//this.add(sliderPanel, BorderLayout.SOUTH);
 		this.add(catPanel, BorderLayout.CENTER);
+		manager.startGame();
 		//make visible
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		setVisible(true);
 	}
 	public void switchToShelter() {
+		manager.pauseGame();
 		new ShelterGUI(adoptionManager);
 		this.dispose();
 	}
-	//TODO - game component - new class?
+	
+	//TODO - somethings going wrong where if you have multiple cats run away at the same time the last cat to run away the HomeGUI stays
+	//so theres 2 homeGUIs open
+	public void updateGUI(Cat cat) {
+		JOptionPane.showMessageDialog(this, "Oh no! " + cat.getName() + " ran away! Don't forget to engage with your cats!");
+		this.dispose();
+		new HomeGUI(adoptionManager);
+	}
 	//TODO - set background to something interesting
-	//TODO - I want to have some sort of indicator that the cat is happy or unhappy. Like top 33% happy middle uneasy bottom sad
-	//thats probably connected to the game aspect
+	
 	
 }
