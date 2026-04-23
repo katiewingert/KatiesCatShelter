@@ -31,9 +31,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CatFileReader
-{
-	private String filePath;
-	
+{	
 	public CatFileReader() {}
 	
 	//there is an expected file format which is to be included in this project
@@ -102,7 +100,6 @@ public class CatFileReader
 				else {
 					throw new InvalidFileFormatException();
 				}
-				cat = new BigCat(name, age, socialLevel, pictureFilePath);
 				
 				manager.addCat(cat);
 			}
