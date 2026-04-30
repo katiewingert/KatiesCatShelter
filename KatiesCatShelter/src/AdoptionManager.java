@@ -36,7 +36,6 @@ public class AdoptionManager
 	/**
 	 * Purpose: Constructor for adoption manager
 	 */
-	//TODO - make constructor?
 	public AdoptionManager() {}
 	
 	/**

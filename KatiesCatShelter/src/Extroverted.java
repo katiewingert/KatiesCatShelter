@@ -34,6 +34,10 @@ public class Extroverted implements SocialLevel
 		return 5;
 	}
 	
+	/**
+	 * Purpose: toString method used to check cats SocialLevel
+	 * @return extroverted for extroverted cats
+	 */
 	@Override
 	public String toString() {
 		return "Extroverted";

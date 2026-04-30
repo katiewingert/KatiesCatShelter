@@ -124,6 +124,10 @@ public class HomeGUI extends JFrame
 		pack();
 		setVisible(true);
 	}
+	
+	/**
+	 * Purpose: Method that switches view to shelter
+	 */
 	public void switchToShelter() {
 		manager.pauseGame();
 		new ShelterGUI(adoptionManager);
@@ -132,12 +136,13 @@ public class HomeGUI extends JFrame
 	
 	//TODO - somethings going wrong where if you have multiple cats run away at the same time the last cat to run away the HomeGUI stays
 	//so theres 2 homeGUIs open
+	/**
+	 * Purpose: Update the homeGUI upon cat running away
+	 */
 	public void updateGUI(Cat cat) {
 		JOptionPane.showMessageDialog(this, "Oh no! " + cat.getName() + " ran away! Don't forget to engage with your cats!");
 		this.dispose();
 		new HomeGUI(adoptionManager);
-	}
-	//TODO - set background to something interesting
-	
+	}	
 	
 }

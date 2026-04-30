@@ -37,8 +37,6 @@ public class Main
 		}
 		catch (InvalidFileFormatException e)
 		{
-			// TODO Auto-generated catch block
-
 			e.printStackTrace();
 		}
 		new ShelterGUI(manager);

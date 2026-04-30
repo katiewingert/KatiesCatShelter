@@ -32,16 +32,26 @@ import java.awt.event.ActionListener;
  */
 public class CatButton extends JButton
 {
+	//CatButton has-a cat
 	private Cat cat; 
+	//CatButton has-a scale
 	private int scale = 0;
+	//CatButton has-a timer
 	private Timer fadeTimer;
 
+	/**
+	 * Purpose: Constructor for CatButton
+	 */
 	public CatButton(ImageIcon icon, Cat cat)
 	{
 		super(icon);
 		this.cat = cat;
 	}
 
+	/**
+	 * Purpose: Method to paint the cage on cat buttons
+	 * @param graphics
+	 */
 	@Override
 	public void paintComponent(Graphics g)
 	{
@@ -62,6 +72,9 @@ public class CatButton extends JButton
 
 	}
 
+	/**
+	 * Purpose: Fade out cage on cat button
+	 */
 	public void fadeOutCage()
 	{
 		ActionListener taskPerformed = new ActionListener()

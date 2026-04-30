@@ -26,7 +26,18 @@
  */
 public class BigCat extends Cat
 {
+	/**
+	 * Purpose: Default constructor for BigCat
+	 */
 	public BigCat() {}
+	
+	/**
+	 * Purpose: Constructor for BigCat
+	 * @param name of cat
+	 * @param age of cat
+	 * @param socialLevel of cat
+	 * @param file path of cat photo
+	 */
 	public BigCat(String name, int age, SocialLevel level, String filePath) {
 		super(name, age, level, filePath);
 	}
@@ -39,11 +50,19 @@ public class BigCat extends Cat
 		this.increaseHappiness(5);
 	}
 	
+	/**
+	 * Purpose: Get size of cat
+	 * @return size of cat
+	 */
 	@Override
 	public String getSize() {
 		return "Big";
 	}
 	
+	/**
+	 * Purpose: toString method for testing purposes
+	 * @return string of cat attributes
+	 */
 	@Override
 	public String toString() {
 		return getName() + getAge() + getSocialLevel() + getSize();

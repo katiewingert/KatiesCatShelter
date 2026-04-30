@@ -32,11 +32,17 @@ import java.util.Scanner;
 
 public class CatFileReader
 {	
+	/**
+	 * Purpose: Default constructor for CatFileReader
+	 */
 	public CatFileReader() {}
-	
-	//there is an expected file format which is to be included in this project
-	//invalid file format is when file format is not correct
 
+	/**
+	 * Purpose: Method to call to read a cat file
+	 * @param filePath of file to be read
+	 * @param AdoptionManager to send cat objects to
+	 * @throws InvalidFileFormatException if file does not match expected format
+	 */
 	public void readCatFile(String filePath, AdoptionManager manager) throws InvalidFileFormatException {
 		Scanner scan = null;
 		String name;

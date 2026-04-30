@@ -26,9 +26,17 @@
  */
 public class SmallCat extends Cat
 {
+	/**
+	 * Purpose: Constructor for SmallCat
+	 * @param name of cat
+	 * @param age of cat
+	 * @param SocialLevel of cat
+	 * @param filepath of cat picture
+	 */
 	public SmallCat(String name, int age, SocialLevel level, String filePath) {
 		super(name, age, level, filePath);
 	}
+	
 	/**
 	 * Purpose: increase cat happiness based on feed effect
 	 */
@@ -38,11 +46,19 @@ public class SmallCat extends Cat
 		this.increaseHappiness(10);
 	}
 	
+	/**
+	 * Purpose: Method to get the size of the cat
+	 * @return small for small cats
+	 */
 	@Override
 	public String getSize() {
 		return "Small";
 	}
 	
+	/**
+	 * Purpose: toString method for testing purposes
+	 * @return string of cat attributes
+	 */
 	@Override
 	public String toString() {
 		return getName() + getAge() + getSocialLevel() + getSize();

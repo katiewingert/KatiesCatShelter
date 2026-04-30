@@ -34,6 +34,10 @@ public class Introverted implements SocialLevel
 		return 10;
 	}
 	
+	/**
+	 * Purpose: Method to return cats SocialLevel
+	 * @return introverted for introverted cats
+	 */
 	@Override
 	public String toString() {
 		return "Introverted";

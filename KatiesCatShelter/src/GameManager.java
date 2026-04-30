@@ -37,13 +37,27 @@ import javax.swing.JSlider;
  */
 public class GameManager
 { 
+	//GameManager has-many CatSliders
 	private ArrayList<CatSlider> sliders;
+	//GameManager has-a AdoptionManager
 	private AdoptionManager manager;
-	private HomeGUI home; //necisary?
-	private ArrayList<Cat> cats; 
+	//GameManager has-a HomeGUI
+	private HomeGUI home;
+	//GameManager has-many Cats
+	private ArrayList<Cat> cats;
+	//GameManager has-a timer
 	private Timer timer;
+	//GameManager has-a lastFeedTime
 	private long lastFeedTime;
+	//GameManager has-a lastPlayTime
 	private long lastPlayTime;
+	
+	/**
+	 * Purpose: Constructor for GameManager
+	 * @param list of cat sliders
+	 * @param adoptionManager that records adopted cats
+	 * @param homeGUI that calls this GameManager
+	 */
 	public GameManager(ArrayList<CatSlider> sliderList, AdoptionManager adoptionManager, HomeGUI homeGUI) {
 		sliders = sliderList;
 		manager = adoptionManager;
@@ -51,6 +65,9 @@ public class GameManager
 		cats = adoptionManager.getAdoptedCats();
 	}
 	
+	/**
+	 * Purpose: Method to start the game
+	 */
 	public void startGame() {
 		
 		ActionListener taskPerformed = new ActionListener() {
@@ -72,9 +89,18 @@ public class GameManager
 		timer = new Timer(100, taskPerformed);
 		timer.start();
 	}
+	
+	/**
+	 * Purpose: method to pause the game
+	 */
 	public void pauseGame() {
 		timer.stop();
 	}
+	
+	/**
+	 * Purpose: Method to update happiness as a result of cat being pet
+	 * @param cat that was pet
+	 */
 	public void wasPet(Cat cat) {
 		if (cat.getSocialLevel().equals("Extroverted")) {
 			cat.pet();
@@ -92,6 +118,10 @@ public class GameManager
 		}
 	}
 	
+	/**
+	 * Purpose: Method to update happiness as a result of cat being fed
+	 * @param cat that was fed
+	 */
 	public void wasFed(Cat cat) {
 		if (cat.getSize().equals("Big")) {
 			cat.feed();
@@ -109,6 +139,10 @@ public class GameManager
 		}
 	}
 
+	/**
+	 * Purpose: Method to call if a cat hits 0 happiness and leaves the home
+	 * @param cat that runs away
+	 */
 	public void runAway(Cat cat) {
 		manager.unadoptCat(cat);
 		home.updateGUI(cat);

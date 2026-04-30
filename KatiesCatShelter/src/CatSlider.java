@@ -30,12 +30,22 @@ public class CatSlider extends JSlider
 {
 	//TODO None of this works at all so whole thing gotta fix
 	//paintComponents clearly the wrong method to use
+	//CatSlider has-a cat
 	private Cat cat;
+	/**
+	 * Purpose: Constructor for CatSlider
+	 * @param int that represents orientation
+	 * @param cat that the slider belongs to
+	 */
 	public CatSlider(int a, Cat cat) {
 		super(a);
 		this.cat = cat;
 	}
 	
+	/**
+	 * Purpose: Paint the slider different colors based on cats happiness
+	 * @param graphics
+	 */
 	@Override
 	public void paintComponent(Graphics g)
 	{
