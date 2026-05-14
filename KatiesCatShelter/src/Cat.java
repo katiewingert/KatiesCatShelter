@@ -164,6 +164,7 @@ public abstract class Cat
 	 */
 	public void decreaseHappiness(int happiness) {
 		this.happiness -= happiness;
+		//happiness cannot be less than 0
 		if (this.happiness < 0) {
 			this.happiness = 0;
 		}

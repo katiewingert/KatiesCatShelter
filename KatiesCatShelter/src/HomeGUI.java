@@ -55,7 +55,6 @@ public class HomeGUI extends JFrame
 		manager = new GameManager(sliderList, adoptionManager, this);
 		
 		this.setLayout(new BorderLayout());
-		//this.setPreferredSize(new Dimension(1000, 1000));
 		
 		JPanel catPanel = new JPanel(new GridLayout(3, myCats.size()));
 		

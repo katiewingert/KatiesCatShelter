@@ -58,13 +58,16 @@ public class CatButton extends JButton
 		super.paintComponent(g);
 		int height = getHeight();
 		int width = getWidth();
-
+		
+		//draw the vertical lines of the cage
 		for (int i = 10; i < width - scale; i += 20)
 		{
 			g.drawLine(i, 0, i, height);
 			g.drawLine(i + 1, 0, i + 1, height);
 
 		}
+		
+		//draw the horizontal lines of the cage
 		for (int i = 10; i < height; i += 20)
 		{
 			g.drawLine(0, i, width - scale, i);
@@ -77,11 +80,13 @@ public class CatButton extends JButton
 	 */
 	public void fadeOutCage()
 	{
+		//add a new ActionListener to slide the cage
 		ActionListener taskPerformed = new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				//use scale variable to decrease the amount of cage drawn on every repaint call
 				scale += 2;
 				if (scale > getWidth())
 				{
@@ -90,6 +95,8 @@ public class CatButton extends JButton
 				repaint();
 			}
 		};
+		
+		//at every 10 millisecond interval, perform taskPerformed
 		fadeTimer = new Timer(10, taskPerformed);
 		fadeTimer.start();
 	}

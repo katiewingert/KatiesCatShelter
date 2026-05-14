@@ -39,6 +39,7 @@ public class BigCat extends Cat
 	 * @param file path of cat photo
 	 */
 	public BigCat(String name, int age, SocialLevel level, String filePath) {
+		//call the Cat constructor
 		super(name, age, level, filePath);
 	}
 	/**

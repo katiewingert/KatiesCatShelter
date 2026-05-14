@@ -54,6 +54,8 @@ public class CatFileReader
 		try {
 			File file = new File(filePath);
 			scan = new Scanner(file);
+			
+			//there cannot be more than 12 cats in the shelter
 			for (int i = 0; i < 12; i++) {
 				Cat cat;
 				if (!scan.next().equals("Name:"))
@@ -87,9 +89,12 @@ public class CatFileReader
 				
 				catSize = scan.next();
 				
+				//set cat as introverted if introverted
 				if (level.equals("Introverted")) {
 					socialLevel = new Introverted();
 				}
+				
+				//set cat as extroverted if extroverted
 				else if (level.equals("Extroverted")) {
 					socialLevel = new Extroverted();
 				}
@@ -97,9 +102,12 @@ public class CatFileReader
 					throw new InvalidFileFormatException();
 				}
 				
+				//if cat is big, create a new BigCat object
 				if (catSize.equals("Big")) {
 					cat = new BigCat(name, age, socialLevel, pictureFilePath);
 				}
+				
+				//if cat is small, create a new SmallCat object
 				else if (catSize.equals("Small")) {
 					cat = new SmallCat(name, age, socialLevel, pictureFilePath);
 				}

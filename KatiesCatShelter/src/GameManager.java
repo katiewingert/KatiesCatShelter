@@ -70,14 +70,16 @@ public class GameManager
 	 */
 	public void startGame() {
 		
+		//create a new ActionListener 
 		ActionListener taskPerformed = new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				for (int i = 0; i < cats.size(); i++) {
 					cats.get(i).decreaseHappiness(1);
+					//update the slider to the current happiness value
 					sliders.get(i).setValue(cats.get(i).getHappiness());
+					//check to see if the cats happiness has reached 0, and have the cat run away if so
 					if (cats.get(i).getHappiness() == 0) {
 						runAway(cats.get(i));
 					}
@@ -85,7 +87,8 @@ public class GameManager
 				
 			}
 		};
-			
+		
+		//timer performs taskPerformed every 1 second
 		timer = new Timer(100, taskPerformed);
 		timer.start();
 	}
@@ -108,7 +111,7 @@ public class GameManager
 		else {
 			long currTime = System.currentTimeMillis();
 			if (currTime - lastPlayTime <= 1000) {
-				//small cats are a little unhappy if they are overfed
+				//introverted cats are unhappy if they are overpet 
 				cat.decreaseHappiness(1);
 			}
 			else {
@@ -129,7 +132,7 @@ public class GameManager
 		else {
 			long currTime = System.currentTimeMillis();
 			if (currTime - lastFeedTime <= 1000) {
-				//small cats are a little unhappy if they are overfed
+				//small cats are unhappy if they are overfed
 				cat.decreaseHappiness(1);
 			}
 			else {

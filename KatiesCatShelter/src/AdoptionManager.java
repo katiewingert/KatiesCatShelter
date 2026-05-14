@@ -53,6 +53,7 @@ public class AdoptionManager
 	public void adoptCat(Cat cat) {
 		adoptedCats.add(cat);
 		unadoptedCats.remove(cat);
+		//set the adoption status of the cat object
 		cat.adopt();
 	}
 	
@@ -63,6 +64,7 @@ public class AdoptionManager
 	public void unadoptCat(Cat cat) {
 		adoptedCats.remove(cat);
 		addCat(cat);
+		//set the adoption status of the cat object
 		cat.unadopt();
 	}
 	
