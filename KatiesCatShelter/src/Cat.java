@@ -1,50 +1,48 @@
-/**
-* Lead Author(s):
-* @author katie; student ID
-* @author Full name; student ID
-* <<Add additional lead authors here>>
-*
-* Other Contributors:
-* Full name; student ID or contact information if not in class
-* <<Add additional contributors (mentors, tutors, friends) here, with contact information>>
-*
-* References:
-* Morelli, R., & Walde, R. (2016).
-* Java, Java, Java: Object-Oriented Problem Solving
-* https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
-*
-* <<Add more references here>>
-*
-* Version: 2026-04-06
-*/
-
 import javax.swing.ImageIcon;
 
 /**
- * Purpose: The reponsibility of Cat is ...
+ * Lead Author(s):
+ * 
+ * @author Katie Wingert
  *
- * Cat is-a ...
- * Cat is ...
+ *         Other Contributors:
+ *         Chris Wingert, chris@wingert.org
+ * 
+ *         References:
+ *         Morelli, R., & Walde, R. (2016).
+ *         Java, Java, Java: Object-Oriented Problem Solving
+ *         https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
+ *
+ *
+ *         Version: 2026-04-06
+ */
+
+/**
+ * Purpose: The responsibility of Cat is to represent a cat, describe a cat's
+ * attributes and abstractly describe its behaviors.
+ *
+ * Cat is an abstract class.
  */
 public abstract class Cat
 {
-	//Cat has-a name
+	// Cat has-a name
 	private String name;
-	//Cat has-an age
+	// Cat has-an age
 	private int age;
-	//Cat has-a adoption status
+	// Cat has-a adoption status
 	private boolean isAdopted;
-	//Cat has-a happiness level
+	// Cat has-a happiness level
 	private int happiness;
-	//Cat has-a social level
+	// Cat has-a social level
 	private SocialLevel socialLevel;
-	//Cat has-a picture
+	// Cat has-a picture
 	private ImageIcon picture;
-	
+
 	/**
-	 * Purpose: Default constructor for a cat object
+	 * Purpose: Default constructor for a cat object.
 	 */
-	public Cat() {
+	public Cat()
+	{
 		name = "NoName";
 		age = -1;
 		socialLevel = null;
@@ -52,11 +50,13 @@ public abstract class Cat
 		isAdopted = false;
 		happiness = 100;
 	}
-	
+
 	/**
-	 * Purpose: Constructor for a cat object
+	 * Purpose: Constructor for a cat object.
 	 */
-	public Cat(String name, int age, SocialLevel socialLevel, String pictureFilePath) {
+	public Cat(String name, int age, SocialLevel socialLevel,
+			String pictureFilePath)
+	{
 		this.name = name;
 		this.age = age;
 		this.socialLevel = socialLevel;
@@ -64,129 +64,160 @@ public abstract class Cat
 		happiness = 100;
 		isAdopted = false;
 	}
-	
+
 	/**
-	 * Purpose: Getter for cat picture
-	 * @Return the picture of the cat
+	 * Purpose: Getter for cat picture.
+	 * 
+	 * @return the picture of the cat
 	 */
-	public ImageIcon getPicture() {
+	public ImageIcon getPicture()
+	{
 		return picture;
 	}
-	
+
 	/**
-	 * Purpose: Setter for cat picture
+	 * Purpose: Setter for cat picture.
+	 * 
 	 * @param the filepath of the cat picture
 	 */
-	public void setPicture(String filepath) {
+	public void setPicture(String filepath)
+	{
 		picture = new ImageIcon(filepath);
 	}
-	
+
 	/**
-	 * Purpose: Getter for cat name
-	 * @Return cat name
+	 * Purpose: Getter for cat name.
+	 * 
+	 * @return cat name
 	 */
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
-	
+
 	/**
-	 * Purpose: Setter for cat name
+	 * Purpose: Setter for cat name.
+	 * 
 	 * @param new name for cat
 	 */
-	public void setName(String name) {
+	public void setName(String name)
+	{
 		this.name = name;
 	}
-	
+
 	/**
-	 * Purpose: Getter for cat age
-	 * @Return cat age
+	 * Purpose: Getter for cat age.
+	 * 
+	 * @return cat age
 	 */
-	public int getAge() {
+	public int getAge()
+	{
 		return age;
 	}
-	
+
 	/**
-	 * Purpose: Setter for cat age
+	 * Purpose: Setter for cat age.
+	 * 
 	 * @param new cat age
 	 */
-	public void setAge(int age) {
+	public void setAge(int age)
+	{
 		this.age = age;
 	}
-	
+
 	/**
-	 * Purpose: Function that returns whether or not a cat is currently adopted
-	 * @Return true if cat is adopted, false if cat is not adopted
+	 * Purpose: Function that returns whether or not a cat is currently adopted.
+	 * 
+	 * @return true if cat is adopted, false if cat is not adopted
 	 */
-	public boolean isAdopted() {
+	public boolean isAdopted()
+	{
 		return isAdopted;
 	}
-	
+
 	/**
-	 * Purpose: Function to adopt cat
+	 * Purpose: Function to adopt cat.
 	 */
-	//TODO
-	public void adopt() {
+	public void adopt()
+	{
 		isAdopted = true;
 	}
-	
+
 	/**
-	 * Purpose: Function to unadopt cat
+	 * Purpose: Function to unadopt cat.
 	 */
-	//TODO
-	public void unadopt() {
+	public void unadopt()
+	{
 		isAdopted = false;
 	}
-	
+
 	/**
-	 * Purpose: Getter for cat happiness
-	 * @Return cat happiness
+	 * Purpose: Getter for cat happiness.
+	 * 
+	 * @return cat happiness
 	 */
-	public int getHappiness() {
+	public int getHappiness()
+	{
 		return happiness;
 	}
-	
+
 	/**
-	 * Purpose: Increase the happiness of a cat
+	 * Purpose: Increase the happiness of a cat.
+	 * 
 	 * @param value to increase happiness by
 	 */
-	public void increaseHappiness(int happiness) {
+	public void increaseHappiness(int happiness)
+	{
 		this.happiness += happiness;
-		//happiness cannot exceed 100
-		if (this.happiness > 100) {
+		// happiness cannot exceed 100
+		if (this.happiness > 100)
+		{
 			this.happiness = 100;
 		}
 	}
-	
-	
+
 	/**
-	 * Purpose: Decrease the happiness of a cat
+	 * Purpose: Decrease the happiness of a cat.
+	 * 
 	 * @param value to decrease happiness by
 	 */
-	public void decreaseHappiness(int happiness) {
+	public void decreaseHappiness(int happiness)
+	{
 		this.happiness -= happiness;
-		//happiness cannot be less than 0
-		if (this.happiness < 0) {
+		// happiness cannot be less than 0
+		if (this.happiness < 0)
+		{
 			this.happiness = 0;
 		}
 	}
-	
+
 	/**
-	 * Purpose: Getter for cats social level
+	 * Purpose: Getter for cats social level.
+	 * 
 	 * @return social level
 	 */
-	public String getSocialLevel() {
+	public String getSocialLevel()
+	{
 		return socialLevel.toString();
 	}
-	
+
 	/**
-	 * Purpose: Function that increases cat happiness due to being pet
+	 * Purpose: Function that increases cat happiness due to being pet.
 	 */
-	public void pet() {
+	public void pet()
+	{
 		increaseHappiness(socialLevel.petEffect());
 	}
-	
-	
+
+	/**
+	 * Purpose: Define how feeding affects the cats happiness.
+	 */
 	abstract void feed();
-	
+
+	/**
+	 * Purpose: Return the size of the cat.
+	 * 
+	 * @return size of cat
+	 */
 	abstract String getSize();
 }

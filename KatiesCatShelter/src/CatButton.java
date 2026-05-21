@@ -4,14 +4,10 @@ import java.awt.event.ActionEvent;
 /**
  * Lead Author(s):
  * 
- * @author katie; student ID
- * @author Full name; student ID
- *         <<Add additional lead authors here>>
+ * @author Katie Wingert
  *
  *         Other Contributors:
- *         Full name; student ID or contact information if not in class
- *         <<Add additional contributors (mentors, tutors, friends) here, with
- *         contact information>>
+ *         Chris Wingert, chris@wingert.org
  *
  *         References:
  *         Morelli, R., & Walde, R. (2016).
@@ -19,24 +15,29 @@ import java.awt.event.ActionEvent;
  *         https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
  *
  *         <<Add more references here>>
- *         https://docs.oracle.com/javase/tutorial/uiswing/painting/closer.html
+ *         “A Closer Look at the Paint Mechanism (the JavaTM Tutorials >
+ *         Creating a GUI with Swing > Performing Custom Painting).” Oracle.com,
+ *         docs.oracle.com/javase/tutorial/uiswing/painting/closer.html.
+ *         Jiménez, Osvaldo. Draw, Paint, Repaint. Sept. 2008,
+ *         https://web.stanford.edu/class/archive/cs/cs108/cs108.1092/handouts081/27PaintRepaint.pdf
  *         Version: 2026-04-20
  */
 import java.awt.event.ActionListener;
 
 /**
- * Purpose: The reponsibility of PaintLines is ...
- *
- * PaintLines is-a ...
- * PaintLines is ...
+ * Purpose: The responsibility of CatButton is to display a cat image as a
+ * JButton and to draw a cage over the JButton until cat adoption, when
+ * CatButton will then fade out the cage.
+ * 
+ * CatButton is-a JButton
  */
 public class CatButton extends JButton
 {
-	//CatButton has-a cat
-	private Cat cat; 
-	//CatButton has-a scale
+	// CatButton has-a cat
+	private Cat cat;
+	// CatButton has-a scale
 	private int scale = 0;
-	//CatButton has-a timer
+	// CatButton has-a timer
 	private Timer fadeTimer;
 
 	/**
@@ -50,6 +51,7 @@ public class CatButton extends JButton
 
 	/**
 	 * Purpose: Method to paint the cage on cat buttons
+	 * 
 	 * @param graphics
 	 */
 	@Override
@@ -58,16 +60,16 @@ public class CatButton extends JButton
 		super.paintComponent(g);
 		int height = getHeight();
 		int width = getWidth();
-		
-		//draw the vertical lines of the cage
+
+		// draw the vertical lines of the cage
 		for (int i = 10; i < width - scale; i += 20)
 		{
 			g.drawLine(i, 0, i, height);
 			g.drawLine(i + 1, 0, i + 1, height);
 
 		}
-		
-		//draw the horizontal lines of the cage
+
+		// draw the horizontal lines of the cage
 		for (int i = 10; i < height; i += 20)
 		{
 			g.drawLine(0, i, width - scale, i);
@@ -80,13 +82,14 @@ public class CatButton extends JButton
 	 */
 	public void fadeOutCage()
 	{
-		//add a new ActionListener to slide the cage
+		// add a new ActionListener to slide the cage
 		ActionListener taskPerformed = new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				//use scale variable to decrease the amount of cage drawn on every repaint call
+				// use scale variable to decrease the amount of cage drawn on
+				// every repaint call
 				scale += 2;
 				if (scale > getWidth())
 				{
@@ -95,8 +98,8 @@ public class CatButton extends JButton
 				repaint();
 			}
 		};
-		
-		//at every 10 millisecond interval, perform taskPerformed
+
+		// at every 10 millisecond interval, perform taskPerformed
 		fadeTimer = new Timer(10, taskPerformed);
 		fadeTimer.start();
 	}

@@ -1,33 +1,28 @@
 /**
 * Lead Author(s):
-* @author katie; student ID
-* @author Full name; student ID
-* <<Add additional lead authors here>>
+* @author Katie Wingert
 *
 * Other Contributors:
-* Full name; student ID or contact information if not in class
-* <<Add additional contributors (mentors, tutors, friends) here, with contact information>>
-*
+* Chris Wingert, chris@wingert.org
+* 
 * References:
 * Morelli, R., & Walde, R. (2016).
 * Java, Java, Java: Object-Oriented Problem Solving
 * https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
 *
-* <<Add more references here>>
 *
 * Version: 2026-04-06
 */
 
 /**
- * Purpose: The reponsibility of Introverted is ...
+ * Purpose: The reponsibility of Introverted is to define the behavior of introverted cats.
  *
- * Introverted is-a ...
- * Introverted is ...
+ * Introverted is-a SocialLevel
  */
 public class Introverted implements SocialLevel
 {
 	/**
-	 * Purpose: increase cat happiness based on pet effect
+	 * Purpose: increase cat happiness based on pet effect.
 	 */
 	public int petEffect() {
 		//introverted cats need less pets to be happy
@@ -35,7 +30,7 @@ public class Introverted implements SocialLevel
 	}
 	
 	/**
-	 * Purpose: Method to return cats SocialLevel
+	 * Purpose: Method to return cats SocialLevel.
 	 * @return introverted for introverted cats
 	 */
 	@Override
