@@ -1,49 +1,47 @@
-import java.util.*;
 import java.io.*;
+import java.io.File;
+import java.util.Scanner;
 /**
-* Lead Author(s):
-* @author katie; student ID
-* @author Full name; student ID
-* <<Add additional lead authors here>>
-*
-* Other Contributors:
-* Full name; student ID or contact information if not in class
-* <<Add additional contributors (mentors, tutors, friends) here, with contact information>>
-*
-* References:
-* Morelli, R., & Walde, R. (2016).
-* Java, Java, Java: Object-Oriented Problem Solving
-* https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
-*
-* <<Add more references here>>
-*
-* Version: 2026-04-06
-*/
+ * Lead Author(s):
+ * 
+ * @author Katie Wingert
+ *
+ *         Other Contributors:
+ *         Chris Wingert, chris@wingert.org
+ *         References:
+ *         Morelli, R., & Walde, R. (2016).
+ *         Java, Java, Java: Object-Oriented Problem Solving
+ *         https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
+ *
+ *
+ *         Version: 2026-04-06
+ */
 
 /**
- * Purpose: The reponsibility of CatFileReader is ...
- *
- * CatFileReader is-a ...
- * CatFileReader is ...
+ * Purpose: The reponsibility of CatFileReader is to read cat files, verify they
+ * adhere to the expected file format, and save cat information as cat objects.
  */
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class CatFileReader
-{	
+{
 	/**
 	 * Purpose: Default constructor for CatFileReader
 	 */
-	public CatFileReader() {}
+	public CatFileReader()
+	{
+	}
 
 	/**
 	 * Purpose: Method to call to read a cat file
-	 * @param filePath of file to be read
+	 * 
+	 * @param filePath        of file to be read
 	 * @param AdoptionManager to send cat objects to
 	 * @throws InvalidFileFormatException if file does not match expected format
 	 */
-	public void readCatFile(String filePath, AdoptionManager manager) throws InvalidFileFormatException {
+	public void readCatFile(String filePath, AdoptionManager manager)
+			throws InvalidFileFormatException
+	{
+
 		Scanner scan = null;
 		String name;
 		int age;
@@ -51,82 +49,129 @@ public class CatFileReader
 		String pictureFilePath;
 		String catSize;
 		String level;
-		try {
+		String tempString;
+		int currLineNumber = 0;
+
+		try
+		{
 			File file = new File(filePath);
 			scan = new Scanner(file);
-			
-			//there cannot be more than 12 cats in the shelter
-			for (int i = 0; i < 12; i++) {
+
+			// there cannot be more than 12 cats in the shelter
+			for (int i = 0; i < 12; i++)
+			{
 				Cat cat;
-				if (!scan.next().equals("Name:"))
+
+				currLineNumber++;
+				tempString = scan.next();
+				if (!tempString.equals("Name:"))
 				{
-					throw new InvalidFileFormatException();
+
+					throw new InvalidFileFormatException(
+							"Expected \"Name:\" but recieved \"" + tempString
+									+ "\" on line " + currLineNumber);
 				}
-				
+
 				name = scan.next();
-				
-				if (!scan.next().equals("Age:")) {
-					throw new InvalidFileFormatException();
+
+				currLineNumber++;
+				tempString = scan.next();
+				if (!tempString.equals("Age:"))
+				{
+					throw new InvalidFileFormatException(
+							"Expected \"Age:\" but recieved \"" + tempString
+									+ "\" on line " + currLineNumber);
 				}
-				
+
 				age = scan.nextInt();
-				
-				if (!scan.next().equals("SocialLevel:")) {
-					throw new InvalidFileFormatException();
+
+				currLineNumber++;
+				tempString = scan.next();
+				if (!tempString.equals("SocialLevel:"))
+				{
+					throw new InvalidFileFormatException(
+							"Expected \"SocialLevel:\" but recieved \""
+									+ tempString + "\" on line "
+									+ currLineNumber);
 				}
-				
+
 				level = scan.next();
-				
-				if (!scan.next().equals("Filepath:")) {
-					throw new InvalidFileFormatException();
+
+				currLineNumber++;
+				tempString = scan.next();
+				if (!tempString.equals("Filepath:"))
+				{
+					throw new InvalidFileFormatException(
+							"Expected \"Filepath:\" but recieved \""
+									+ tempString + "\" on line "
+									+ currLineNumber);
 				}
-				
+
 				pictureFilePath = scan.next();
-				
-				if (!scan.next().equals("Size:")) {
-					throw new InvalidFileFormatException();
+
+				currLineNumber++;
+				tempString = scan.next();
+				if (!tempString.equals("Size:"))
+				{
+					throw new InvalidFileFormatException(
+							"Expected \"Size:\" but recieved \"" + tempString
+									+ "\" on line " + currLineNumber);
 				}
-				
+
 				catSize = scan.next();
-				
-				//set cat as introverted if introverted
-				if (level.equals("Introverted")) {
+
+				// set cat as introverted if introverted
+				if (level.equals("Introverted"))
+				{
 					socialLevel = new Introverted();
 				}
-				
-				//set cat as extroverted if extroverted
-				else if (level.equals("Extroverted")) {
+
+				// set cat as extroverted if extroverted
+				else if (level.equals("Extroverted"))
+				{
 					socialLevel = new Extroverted();
 				}
-				else {
-					throw new InvalidFileFormatException();
+				else
+				{
+					throw new InvalidFileFormatException("SocialLevel for "
+							+ name
+							+ " must be \"Introverted\" or \"Extroverted\"");
 				}
-				
-				//if cat is big, create a new BigCat object
-				if (catSize.equals("Big")) {
+
+				// if cat is big, create a new BigCat object
+				if (catSize.equals("Big"))
+				{
 					cat = new BigCat(name, age, socialLevel, pictureFilePath);
 				}
-				
-				//if cat is small, create a new SmallCat object
-				else if (catSize.equals("Small")) {
+
+				// if cat is small, create a new SmallCat object
+				else if (catSize.equals("Small"))
+				{
 					cat = new SmallCat(name, age, socialLevel, pictureFilePath);
 				}
-				else {
-					throw new InvalidFileFormatException();
+				else
+				{
+					throw new InvalidFileFormatException("Size for " + name
+							+ " must be \"Big\" or \"Small\"");
 				}
-				
+
 				manager.addCat(cat);
 			}
-			
+
 		}
-		catch (FileNotFoundException e) {
+
+		catch (FileNotFoundException e)
+		{
 			e.printStackTrace();
 		}
-		finally {
-			if (scan != null) {
+
+		finally
+		{
+			if (scan != null)
+			{
 				scan.close();
 			}
 		}
 	}
-	
+
 }
