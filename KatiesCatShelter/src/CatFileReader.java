@@ -162,7 +162,7 @@ public class CatFileReader
 
 		catch (FileNotFoundException e)
 		{
-			e.printStackTrace();
+			System.out.print("File could not be found");
 		}
 
 		finally
