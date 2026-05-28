@@ -14,7 +14,6 @@ import java.awt.event.ActionEvent;
  *         Java, Java, Java: Object-Oriented Problem Solving
  *         https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
  *
- *         <<Add more references here>>
  *         “A Closer Look at the Paint Mechanism (the JavaTM Tutorials >
  *         Creating a GUI with Swing > Performing Custom Painting).” Oracle.com,
  *         docs.oracle.com/javase/tutorial/uiswing/painting/closer.html.
