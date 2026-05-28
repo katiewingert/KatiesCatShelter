@@ -119,7 +119,6 @@ public class ShelterGUI extends JFrame
 		// add cat button panel to the GUI
 		this.add(catButtonPanel, BorderLayout.CENTER);
 
-		// pack();
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);

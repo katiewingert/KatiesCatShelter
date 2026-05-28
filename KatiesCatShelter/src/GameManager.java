@@ -130,8 +130,10 @@ public class GameManager
 			if (currTime - lastPlayTime <= 1000)
 			{
 				// introverted cats are unhappy if they are overpet
+				//pet is not successful
 				cat.decreaseHappiness(1);
 			}
+			//when pet is successful
 			else
 			{
 				cat.pet();
@@ -153,12 +155,15 @@ public class GameManager
 		}
 		else
 		{
+			//use currTime variable to keep track of current time
 			long currTime = System.currentTimeMillis();
 			if (currTime - lastFeedTime <= 1000)
 			{
 				// small cats are unhappy if they are overfed
+				// feed is not successful
 				cat.decreaseHappiness(1);
 			}
+			//when feed is successful
 			else
 			{
 				cat.feed();

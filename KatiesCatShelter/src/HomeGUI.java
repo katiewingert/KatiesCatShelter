@@ -62,7 +62,8 @@ public class HomeGUI extends JFrame
 		this.setLayout(new BorderLayout());
 
 		JPanel catPanel = new JPanel(new GridLayout(3, myCats.size()));
-
+		
+		//if the user has no adopted cats
 		if (myCats.size() == 0)
 		{
 			JLabel label = new JLabel("You have no cats.");
@@ -87,7 +88,7 @@ public class HomeGUI extends JFrame
 			catPanel.add(label);
 		}
 
-		// sliders
+		// GUI slider components
 		for (int i = 0; i < myCats.size(); i++)
 		{
 			Cat cat = myCats.get(i);
@@ -100,7 +101,7 @@ public class HomeGUI extends JFrame
 			catPanel.add(slider);
 		}
 
-		// buttons
+		// GUI button components
 		for (int i = 0; i < myCats.size(); i++)
 		{
 			Cat cat = myCats.get(i);
@@ -137,14 +138,13 @@ public class HomeGUI extends JFrame
 	 */
 	public void switchToShelter()
 	{
+		//pause the game
 		manager.pauseGame();
 		new ShelterGUI(adoptionManager);
+		//dispose of old ShelterGUI
 		this.dispose();
 	}
 
-	// TODO - somethings going wrong where if you have multiple cats run away at
-	// the same time the last cat to run away the HomeGUI stays
-	// so theres 2 homeGUIs open
 	/**
 	 * Purpose: Update the homeGUI upon cat running away
 	 */
@@ -153,6 +153,7 @@ public class HomeGUI extends JFrame
 		JOptionPane.showMessageDialog(this, "Oh no! " + cat.getName()
 				+ " ran away! Don't forget to engage with your cats!");
 		this.dispose();
+		//refresh the GUI with the updated adopted cats list
 		new HomeGUI(adoptionManager);
 	}
 
