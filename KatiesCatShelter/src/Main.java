@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 /**
  * Lead Author(s):
  * 
@@ -33,7 +35,11 @@ public class Main
 		}
 		catch (InvalidFileFormatException e)
 		{
-			System.out.print("File format error: " + e.getMessage());
+			JOptionPane.showMessageDialog(null, "File format error: " + e.getMessage());
+			
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Encountered error: " + e.getMessage());
 		}
 	}
 }
