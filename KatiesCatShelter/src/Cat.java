@@ -206,7 +206,7 @@ public abstract class Cat
 	 */
 	public void pet()
 	{
-		//pet response is specific to socialLevel
+		// pet response is specific to socialLevel
 		increaseHappiness(socialLevel.petEffect());
 	}
 

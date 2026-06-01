@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+
 /**
  * Lead Author(s):
  * 
@@ -59,8 +60,8 @@ public class HomeGUI extends JFrame
 		this.setLayout(new BorderLayout());
 
 		JPanel catPanel = new JPanel(new GridLayout(3, myCats.size()));
-		
-		//if the user has no adopted cats
+
+		// if the user has no adopted cats
 		if (myCats.size() == 0)
 		{
 			JLabel label = new JLabel("You have no cats.");
@@ -113,10 +114,10 @@ public class HomeGUI extends JFrame
 			buttonPanel.add(button2);
 			catPanel.add(buttonPanel);
 		}
-		
+
 		JPanel topPanel = new JPanel(new BorderLayout());
 
-		//add button to switch to shelter
+		// add button to switch to shelter
 		JButton shelterButton = new JButton("\uD83D\uDC08");
 		shelterButton.addActionListener(e -> switchToShelter());
 		shelterButton.setSize(200, 200);
@@ -126,7 +127,7 @@ public class HomeGUI extends JFrame
 		// add components to the GUI
 		this.add(catPanel, BorderLayout.CENTER);
 		manager.startGame();
-		
+
 		// make visible
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -138,10 +139,10 @@ public class HomeGUI extends JFrame
 	 */
 	public void switchToShelter()
 	{
-		//pause the game
+		// pause the game
 		manager.pauseGame();
 		new ShelterGUI(adoptionManager);
-		//dispose of current HomeGUI
+		// dispose of current HomeGUI
 		this.dispose();
 	}
 
@@ -150,12 +151,12 @@ public class HomeGUI extends JFrame
 	 */
 	public void updateGUI(Cat cat)
 	{
-		//pause the game 
+		// pause the game
 		manager.pauseGame();
 		JOptionPane.showMessageDialog(this, "Oh no! " + cat.getName()
 				+ " ran away! Don't forget to engage with your cats!");
 		this.dispose();
-		//refresh the GUI with the updated adopted cats list
+		// refresh the GUI with the updated adopted cats list
 		new HomeGUI(adoptionManager);
 	}
 

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * Lead Author(s):
@@ -15,8 +16,6 @@
  *
  *         Version: 2026-04-06
  */
-
-import java.util.ArrayList;
 
 /**
  * Purpose: The responsibility of AdoptionManager is to store the lists of

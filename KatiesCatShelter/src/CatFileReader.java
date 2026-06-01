@@ -53,7 +53,7 @@ public class CatFileReader
 		String catSize;
 		String level;
 		String tempString;
-		//tracks line number for use in error messages
+		// tracks line number for use in error messages
 		int currLineNumber = 0;
 
 		try
@@ -65,7 +65,7 @@ public class CatFileReader
 			for (int i = 0; i < 12; i++)
 			{
 				Cat cat;
-				
+
 				currLineNumber++;
 				tempString = scan.next();
 				if (!tempString.equals("Name:"))
