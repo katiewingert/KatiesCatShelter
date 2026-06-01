@@ -5,6 +5,7 @@
  *
  *         Other Contributors:
  *         Chris Wingert, chris@wingert.org
+ * 
  *         References:
  *         Morelli, R., & Walde, R. (2016).
  *         Java, Java, Java: Object-Oriented Problem Solving

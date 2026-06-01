@@ -2,6 +2,9 @@
  * Lead Author(s):
  * 
  * @author Katie Wingert
+ * 
+ *         Other Contributors:
+ *         Chris Wingert, chris@wingert.org
  *
  *         References:
  *         Morelli, R., & Walde, R. (2016).

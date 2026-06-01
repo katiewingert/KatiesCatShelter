@@ -35,7 +35,8 @@ import javax.swing.JSlider;
  */
 
 /**
- * Purpose: The responsibility of GameManager is to manage the cat game mechanics
+ * Purpose: The responsibility of GameManager is to manage the cat game
+ * mechanics
  * by updating happiness based on feeding and petting, and returning cats to
  * shelter according to their happiness
  */
@@ -130,10 +131,10 @@ public class GameManager
 			if (currTime - lastPlayTime <= 1000)
 			{
 				// introverted cats are unhappy if they are overpet
-				//pet is not successful
+				// pet is not successful
 				cat.decreaseHappiness(1);
 			}
-			//when pet is successful
+			// when pet is successful
 			else
 			{
 				cat.pet();
@@ -155,7 +156,7 @@ public class GameManager
 		}
 		else
 		{
-			//use currTime variable to keep track of current time
+			// use currTime variable to keep track of current time
 			long currTime = System.currentTimeMillis();
 			if (currTime - lastFeedTime <= 1000)
 			{
@@ -163,7 +164,7 @@ public class GameManager
 				// feed is not successful
 				cat.decreaseHappiness(1);
 			}
-			//when feed is successful
+			// when feed is successful
 			else
 			{
 				cat.feed();

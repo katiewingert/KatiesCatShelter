@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /**
  * Lead Author(s):
  * 
@@ -21,7 +22,6 @@ import java.awt.event.ActionEvent;
  *         https://web.stanford.edu/class/archive/cs/cs108/cs108.1092/handouts081/27PaintRepaint.pdf
  *         Version: 2026-04-20
  */
-import java.awt.event.ActionListener;
 
 /**
  * Purpose: The responsibility of CatButton is to display a cat image as a
@@ -32,8 +32,6 @@ import java.awt.event.ActionListener;
  */
 public class CatButton extends JButton
 {
-	// CatButton has-a cat
-	private Cat cat;
 	// CatButton has-a scale
 	private int scale = 0;
 	// CatButton has-a timer
@@ -42,10 +40,9 @@ public class CatButton extends JButton
 	/**
 	 * Purpose: Constructor for CatButton
 	 */
-	public CatButton(ImageIcon icon, Cat cat)
+	public CatButton(ImageIcon icon)
 	{
 		super(icon);
-		this.cat = cat;
 	}
 
 	/**

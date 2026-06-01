@@ -1,11 +1,12 @@
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 /**
  * Lead Author(s):
  * 
  * @author Katie Wingert
+ * 
+ *         Other Contributors:
+ *         Chris Wingert, chris@wingert.org
  *
  *         References:
  *         Morelli, R., & Walde, R. (2016).
@@ -23,7 +24,11 @@ import javax.swing.JOptionPane;
 
 public class Main
 {
-
+	/**
+	 * Purpose: Main method that begins the game.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args)
 	{
 		AdoptionManager manager = new AdoptionManager();
@@ -35,11 +40,14 @@ public class Main
 		}
 		catch (InvalidFileFormatException e)
 		{
-			JOptionPane.showMessageDialog(null, "File format error: " + e.getMessage());
-			
+			JOptionPane.showMessageDialog(null,
+					"File format error: " + e.getMessage());
+
 		}
-		catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Encountered error: " + e.getMessage());
+		catch (Exception e)
+		{
+			JOptionPane.showMessageDialog(null,
+					"Encountered error: " + e.getMessage());
 		}
 	}
 }

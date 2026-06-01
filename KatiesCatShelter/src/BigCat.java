@@ -61,15 +61,4 @@ public class BigCat extends Cat
 	{
 		return "Big";
 	}
-
-	/**
-	 * Purpose: toString method for testing purposes
-	 * 
-	 * @return string of cat attributes
-	 */
-	@Override
-	public String toString()
-	{
-		return getName() + getAge() + getSocialLevel() + getSize();
-	}
 }

@@ -10,6 +10,7 @@ import java.awt.*;
  *
  *         Other Contributors:
  *         Chris Wingert, chris@wingert.org
+ * 
  *         References:
  *         Morelli, R., & Walde, R. (2016).
  *         Java, Java, Java: Object-Oriented Problem Solving
@@ -54,14 +55,14 @@ public class ShelterGUI extends JFrame
 
 		// set the primary layout to BorderLayout
 		this.setLayout(new BorderLayout(10, 10));
-		
+
 		// panel to store title and home button
 		JPanel titlePanel = new JPanel(new BorderLayout());
 
 		// title label
 		JLabel titleLabel = new JLabel("Welcome to Katie's Cat Shelter");
 		titleLabel.setFont(new Font("Times New Roman", Font.ITALIC, 50));
-		
+
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titlePanel.add(titleLabel, BorderLayout.CENTER);
 		titlePanel.setOpaque(false);
@@ -75,7 +76,7 @@ public class ShelterGUI extends JFrame
 
 		// panel for the cat buttons
 		JPanel catButtonPanel = new JPanel();
-		
+
 		catButtonPanel.setLayout(new GridLayout(3, 4, 10, 10));
 
 		// for loop to display all cats in ArrayList adoptableCats
@@ -97,7 +98,7 @@ public class ShelterGUI extends JFrame
 			ImageIcon catPicture = new ImageIcon();
 			catPicture = new ImageIcon(cat.getPicture().getImage()
 					.getScaledInstance(250, 250, Image.SCALE_SMOOTH));
-			CatButton catButton = new CatButton(catPicture, cat);
+			CatButton catButton = new CatButton(catPicture);
 			catButton.setBackground(Color.LIGHT_GRAY);
 			catButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
@@ -153,7 +154,6 @@ public class ShelterGUI extends JFrame
 		pic = pic.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
 
 		JLabel catPic = new JLabel(new ImageIcon(pic));
-		// catPic.setPreferredSize(new Dimension(500, 250));
 
 		// Add component to the panel and add panel to the catFrame
 		westPanel.add(catPic);

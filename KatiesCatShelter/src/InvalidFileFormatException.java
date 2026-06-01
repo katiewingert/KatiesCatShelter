@@ -2,6 +2,9 @@
  * Lead Author(s):
  * 
  * @author Katie Wingert
+ * 
+ *         Other Contributors:
+ *         Chris Wingert, chris@wingert.org
  *
  *         References:
  *         Morelli, R., & Walde, R. (2016).
@@ -23,6 +26,11 @@
  */
 public class InvalidFileFormatException extends Exception
 {
+	/**
+	 * Purpose: Constructor for InvalidFileFormat.
+	 * 
+	 * @param exception message
+	 */
 	public InvalidFileFormatException(String message)
 	{
 		super(message);
