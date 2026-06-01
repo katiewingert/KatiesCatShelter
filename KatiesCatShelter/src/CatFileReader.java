@@ -1,6 +1,8 @@
 import java.io.*;
 import java.io.File;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
+
 /**
  * Lead Author(s):
  * 
@@ -8,6 +10,7 @@ import java.util.Scanner;
  *
  *         Other Contributors:
  *         Chris Wingert, chris@wingert.org
+ * 
  *         References:
  *         Morelli, R., & Walde, R. (2016).
  *         Java, Java, Java: Object-Oriented Problem Solving
@@ -50,6 +53,7 @@ public class CatFileReader
 		String catSize;
 		String level;
 		String tempString;
+		//tracks line number for use in error messages
 		int currLineNumber = 0;
 
 		try
@@ -61,7 +65,7 @@ public class CatFileReader
 			for (int i = 0; i < 12; i++)
 			{
 				Cat cat;
-
+				
 				currLineNumber++;
 				tempString = scan.next();
 				if (!tempString.equals("Name:"))
@@ -162,7 +166,7 @@ public class CatFileReader
 
 		catch (FileNotFoundException e)
 		{
-			System.out.print("File could not be found");
+			JOptionPane.showMessageDialog(null, "File could not be found");
 		}
 
 		finally
