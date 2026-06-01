@@ -1,10 +1,10 @@
-
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 /**
  * Lead Author(s):
  * 
- * @author katie; student ID
- * @author Full name; student ID
- *         <<Add additional lead authors here>>
+ * @author Katie Wingert
  *
  *         Other Contributors:
  *         Chris Wingert, chris@wingert.org
@@ -35,9 +35,6 @@
  *
  * HomeGUI is-a JFrame
  */
-import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
 
 public class HomeGUI extends JFrame
 {
@@ -116,8 +113,10 @@ public class HomeGUI extends JFrame
 			buttonPanel.add(button2);
 			catPanel.add(buttonPanel);
 		}
+		
 		JPanel topPanel = new JPanel(new BorderLayout());
 
+		//add button to switch to shelter
 		JButton shelterButton = new JButton("\uD83D\uDC08");
 		shelterButton.addActionListener(e -> switchToShelter());
 		shelterButton.setSize(200, 200);
@@ -127,9 +126,10 @@ public class HomeGUI extends JFrame
 		// add components to the GUI
 		this.add(catPanel, BorderLayout.CENTER);
 		manager.startGame();
+		
 		// make visible
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		pack();
 		setVisible(true);
 	}
 
@@ -141,7 +141,7 @@ public class HomeGUI extends JFrame
 		//pause the game
 		manager.pauseGame();
 		new ShelterGUI(adoptionManager);
-		//dispose of old ShelterGUI
+		//dispose of current HomeGUI
 		this.dispose();
 	}
 
@@ -150,6 +150,8 @@ public class HomeGUI extends JFrame
 	 */
 	public void updateGUI(Cat cat)
 	{
+		//pause the game 
+		manager.pauseGame();
 		JOptionPane.showMessageDialog(this, "Oh no! " + cat.getName()
 				+ " ran away! Don't forget to engage with your cats!");
 		this.dispose();
